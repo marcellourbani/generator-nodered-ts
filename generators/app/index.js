@@ -74,10 +74,11 @@ module.exports = class extends Generator {
     const templates = [
       ".eslintrc.json",
       ".gitignore",
+      ".npmignore",
       ".vscode",
-      "dummyfile.txt",
       "jest.config.js",
       "package.json",
+      "tsconfig.json",
       "src/__nodename__.integration.test.ts",
       "src/__nodename__.ts",
       "src/__nodename__.unit.test.ts",

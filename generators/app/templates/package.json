@@ -4,14 +4,16 @@
   "description": <%- JSON.stringify(description) %>,
   "node-red": {
     "nodes": {
-      <%- JSON.stringify(nodename) %>: <%- JSON.stringify(`dist/${nodename}_node.js`) %>
+      <%- JSON.stringify(nodename) %>: <%- JSON.stringify(`dist/${nodename
+      }_node.js`) %>
     }
   },
   "scripts": {
     "test": "jest",
     "watch": "concurrently -k npm:watch-*",
     "watch-ts": "tsc -w",
-    "watch-html": "copy-and-watch --watch src/*.html dist"
+    "watch-html": "copy-and-watch --watch src/*.html dist",
+    "prepack": "tsc && npx copy-and-watch src/*.html dist"
   },
   "keywords": [],
   "author": "",
@@ -22,22 +24,17 @@
     "@types/node-red": "^1.1.0",
     "@typescript-eslint/eslint-plugin": "^3.10.1",
     "@typescript-eslint/parser": "^3.10.1",
+    "@types/node-red-node-test-helper": "^0.2.0",
+    "@types/node-red__editor-client": "^1.1.0",
     "concurrently": "^5.3.0",
     "copy-and-watch": "^0.1.5",
+    "dotenv": "^8.2.0",
     "eslint": "^7.7.0",
     "eslint-plugin-jest": "^23.20.0",
     "jest": "^26.4.2",
+    "node-red-node-test-helper": "^0.2.5",
     "ts-jest": "^26.3.0",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.2"
-  },
-  "dependencies": {
-    "@types/node-red-node-test-helper": "^0.2.0",
-    "@types/node-red__editor-client": "^1.1.0",
-    "axios": "^0.20.0",
-    "dotenv": "^8.2.0",
-    "fast-xml-parser": "^3.17.4",
-    "json2xml": "^0.1.3",
-    "node-red-node-test-helper": "^0.2.5"
   }
 }

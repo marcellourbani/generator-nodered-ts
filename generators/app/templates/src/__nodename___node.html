@@ -4,9 +4,7 @@
     category: "<%= category %>",
     color: "#a6bbcf",
     defaults: {
-      name: { value: "" },
-      url: { value: "", validate: function (u) { return !!u.match(/^https?:\/\//i); } },
-      systemnumber: { value: "", validate: function (x) { return !!x.match(/^\d\d$/); } }
+      name: { value: "" }
     },
     credentials: { // should match <%= nodename %>_node.ts
       password: { type: "password" }

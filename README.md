@@ -1,5 +1,7 @@
 # generator-nodered-ts [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+
 > Yeoman generator for Node-RED with typescript
+> Scaffolds a single node project with jest testing and eslint
 
 ## Installation
 
@@ -18,15 +20,14 @@ yo nodered-ts
 
 ## Getting To Know Yeoman
 
- * Yeoman has a heart of gold.
- * Yeoman is a person with feelings and opinions, but is very easy to work with.
- * Yeoman can be too opinionated at times but is easily convinced not to be.
- * Feel free to [learn more about Yeoman](http://yeoman.io/).
+- Yeoman has a heart of gold.
+- Yeoman is a person with feelings and opinions, but is very easy to work with.
+- Yeoman can be too opinionated at times but is easily convinced not to be.
+- Feel free to [learn more about Yeoman](http://yeoman.io/).
 
 ## License
 
 MIT © [Marcello Urbani]()
-
 
 [npm-image]: https://badge.fury.io/js/generator-nodered-ts.svg
 [npm-url]: https://npmjs.org/package/generator-nodered-ts

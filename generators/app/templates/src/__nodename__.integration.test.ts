@@ -1,6 +1,7 @@
-const <%= nodename %> = require("./<%= nodename %>_node.ts")
 import helper from "node-red-node-test-helper"
 import { Node, NodeMessage } from "node-red"
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const <%= nodename %> = require("./<%= nodename %>_node")
 
 beforeEach(done => helper.startServer(done))
 afterEach(done => {
@@ -9,7 +10,7 @@ afterEach(done => {
 })
 
 test("node registration", done => {
-  var flow = [{ id: "n1", type: "<%= nodename %>", name: "test name" }]
+  const flow = [{ id: "n1", type: "<%= nodename %>", name: "test name" }]
   helper.load(<%= nodename %>, flow, function () {
     const n1 = helper.getNode("n1")
     expect(n1.name).toBe("test name")
@@ -18,7 +19,7 @@ test("node registration", done => {
 })
 
 test("process node", done => {
-  var flow = [
+  const flow = [
     {
       id: "n1",
       type: "<%= nodename %>",

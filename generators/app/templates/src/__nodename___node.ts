@@ -5,35 +5,29 @@ import { NodeAPI, Node, NodeDef, NodeMessage } from "node-red"
 export interface MyMessage extends NodeMessage {
   payload: string
 }
-export const isMyMessage = (msg: NodeMessage): msg is MyMessage => msg?.payload instanceof String
 
-/**
- * modue.exports is the function exported by this module
- *
- * @param {*} RED A node-red API instance, where we will register this node
- */
+export const isMyMessage = (msg: NodeMessage): msg is MyMessage =>
+  typeof msg?.payload === "string"
+
+interface Credentials {
+  password: string
+}
+
 module.exports = (RED: NodeAPI) => {
-  /**
-   * A node red node handler
-   *
-   * @param {*} config the node's configuration, usually an object
-   */
-  function createNodeInstance(config: NodeDef) {
-    const node: Node = this
+  function createNodeInstance(this: Node<Credentials>, config: NodeDef) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    const node = this
     RED.nodes.createNode(node, config)
     node.on("input", async function (msg) {
       try {
         if (isMyMessage(msg)) {
           node.status({ fill: "blue", text: "Processing" })
           const payload = uppercase(msg.payload)
-          node.send(
-            { ...msg, payload }
-          )
+          node.send({ ...msg, payload })
           node.status("")
-        } else throw new Error("Unexpected message format");
-
+        } else throw new Error("Unexpected message format")
       } catch (error) {
-        node.status({ fill: "red", text: error.toString() })
+        node.error(error.toString(), msg)
       }
     })
   }
