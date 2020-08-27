@@ -72,9 +72,9 @@ module.exports = class extends Generator {
 
   writing() {
     const templates = [
-      ".eslintrc.json",
-      ".gitignore",
-      ".npmignore_template",
+      "dot_eslintrc.json",
+      "dot_gitignore",
+      "dot_npmignore",
       ".vscode",
       "jest.config.js",
       "package.json",
@@ -89,9 +89,7 @@ module.exports = class extends Generator {
       this.fs.copyTpl(
         this.templatePath(t),
         this.destinationPath(
-          t
-            .replace(/__nodename__/, this.props.nodename)
-            .replace(/_template$/, "")
+          t.replace(/__nodename__/, this.props.nodename).replace(/^dot_/, ".")
         ),
         this.props
       );
