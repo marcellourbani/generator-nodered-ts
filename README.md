@@ -27,7 +27,7 @@ yo nodered-ts
 
 ## License
 
-MIT © [Marcello Urbani]()
+MIT © [Marcello Urbani](https://github.com/marcellourbani)
 
 [npm-image]: https://badge.fury.io/js/generator-nodered-ts.svg
 [npm-url]: https://npmjs.org/package/generator-nodered-ts

@@ -1,10 +1,10 @@
-"use strict";
 const Generator = require("yeoman-generator");
 const chalk = require("chalk");
 const yosay = require("yosay");
 const _ = require("lodash");
 const path = require("path");
 const mkdirp = require("mkdirp");
+
 const defaultFolder = _.kebabCase(path.basename(process.cwd()));
 
 module.exports = class extends Generator {
@@ -76,8 +76,8 @@ module.exports = class extends Generator {
       "dot_gitignore",
       "dot_npmignore",
       ".vscode",
-      "jest.config.js",
-      "package.json",
+      "jest.config.js.tmpl",
+      "package.json.tmpl",
       "tsconfig.json",
       "src/__nodename__.integration.test.ts",
       "src/__nodename__.ts",
@@ -85,11 +85,15 @@ module.exports = class extends Generator {
       "src/__nodename___node.html",
       "src/__nodename___node.ts"
     ];
+    // eslint-disable-next-line no-restricted-syntax
     for (const t of templates) {
       this.fs.copyTpl(
         this.templatePath(t),
         this.destinationPath(
-          t.replace(/__nodename__/, this.props.nodename).replace(/^dot_/, ".")
+          t
+            .replace(/__nodename__/, this.props.nodename)
+            .replace(/^dot_/, ".")
+            .replace(/.tmpl/, "")
         ),
         this.props
       );
