@@ -4,8 +4,14 @@ const chalk = require("chalk");
 const yosay = require("yosay");
 const _ = require("lodash");
 const path = require("path");
+const mkdirp = require("mkdirp");
+const defaultFolder = _.kebabCase(path.basename(process.cwd()));
 
 module.exports = class extends Generator {
+  installDependencies(dependencies) {
+    super.installDependencies({ ...dependencies, bower: false });
+  }
+
   prompting() {
     // Have Yeoman greet the user.
     this.log(
@@ -24,7 +30,7 @@ module.exports = class extends Generator {
         name: "name",
         message: "Project Name (a project can contain many nodes)",
         validate,
-        default: _.kebabCase(path.basename(process.cwd()))
+        default: defaultFolder
       },
       {
         type: "input",
@@ -51,6 +57,17 @@ module.exports = class extends Generator {
     return this.prompt(prompts).then(props => {
       this.props = props;
     });
+  }
+
+  defaultfolder() {
+    this.log(`paths:${this.destinationPath},${defaultFolder}`);
+    if (this.props.name !== defaultFolder) {
+      this.log(
+        `Your generator must be inside a folder named ${this.props.name}\nI'll automatically create this folder.`
+      );
+      mkdirp(this.props.name);
+      this.destinationRoot(this.destinationPath(this.props.name));
+    }
   }
 
   writing() {
