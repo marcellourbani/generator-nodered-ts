@@ -1,0 +1,34 @@
+<!-- definition  -->
+<script type="text/javascript">
+  RED.nodes.registerType("<%= nodename %>", {
+    category: "<%= category %>",
+    color: "#a6bbcf",
+    defaults: {
+      name: { value: "" },
+      url: { value: "", validate: function (u) { return !!u.match(/^https?:\/\//i); } },
+      systemnumber: { value: "", validate: function (x) { return !!x.match(/^\d\d$/); } }
+    },
+    credentials: { // should match <%= nodename %>_node.ts
+      password: { type: "password" }
+    },
+    inputs: 1,
+    outputs: 1,
+    label: function () {
+      return this.name || "<%= nodename %>";
+    }
+  });
+</script>
+
+<!-- edit dialog -->
+<script type="text/html" data-template-name="<%= nodename %>">
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name" />
+  </div>
+</script>
+<!-- help text -->
+<script type="text/html" data-help-name="<%= nodename %>">
+  <p>
+    <%= description %>
+  </p>
+</script>

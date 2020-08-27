@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Marcello Urbani",
+      "authorEmail": "marcello.urbani@gmail.com",
+      "authorUrl": ""
+    }
+  }
+}
