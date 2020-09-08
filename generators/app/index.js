@@ -22,13 +22,14 @@ module.exports = class extends Generator {
       )
     );
 
-    const validate = n => Boolean(n.match(/^[A-Z][\w_]+$/i));
+    const validate = n => Boolean(n.match(/^[A-Z][\w_-]+$/i));
 
     const prompts = [
       {
         type: "input",
         name: "name",
-        message: "Project Name (a project can contain many nodes)",
+        message:
+          "Project Name - Will prepend node-red-contrib- if needed (a project can contain many nodes)",
         validate,
         default: defaultFolder
       },
@@ -71,6 +72,9 @@ module.exports = class extends Generator {
   }
 
   writing() {
+    this.props.projectname = this.props.name.match(/^node-red-contrib-/)
+      ? this.props.name
+      : `node-red-contrib-${this.props.name}`;
     const templates = [
       "dot_eslintrc.json",
       "dot_gitignore",
