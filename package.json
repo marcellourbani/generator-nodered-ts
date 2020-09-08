@@ -1,6 +1,6 @@
 {
   "name": "generator-nodered-ts",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Yeoman generator for Node-RED with typescript",
   "homepage": "https://github.com/marcellourbani/generator-nodered-ts",
   "author": {
